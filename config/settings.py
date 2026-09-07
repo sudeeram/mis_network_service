@@ -18,12 +18,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {"default": {
-    "ENGINE": "django.db.backends.postgresql",
-    "NAME": os.getenv("POSTGRES_DB", "network"),
-    "USER": os.getenv("POSTGRES_USER", "network"),
-    "PASSWORD": os.getenv("POSTGRES_PASSWORD", "network-dev-password"),
-    "HOST": os.getenv("POSTGRES_HOST", "network-postgres"),
-    "PORT": os.getenv("POSTGRES_PORT", "5432"),
+    "ENGINE": "django.db.backends.mysql",
+    "NAME": os.getenv("MYSQL_DATABASE", "mis_network"),
+    "USER": os.getenv("MYSQL_USER", "mis_network"),
+    "PASSWORD": os.getenv("MYSQL_PASSWORD", "network-dev-password"),
+    "HOST": os.getenv("MYSQL_HOST", "network-mysql"),
+    "PORT": os.getenv("MYSQL_PORT", "3306"),
+    "OPTIONS": {"charset": "utf8mb4", "isolation_level": "read committed"},
 }}
 if os.getenv("USE_SQLITE_FOR_TESTS", "false").lower() == "true":
     DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "test.sqlite3"}}
